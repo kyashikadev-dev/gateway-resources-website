@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+ 
+<head> 
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gateway Resources DMCC</title>
-<meta name="description" content="Gateway Resources is an independent trading house involved in the procurement, logistics, financing and distribution of recyclable plastic and rubber materials, supporting global recycling and the circular economy.">  <link rel="stylesheet" href="styles.css">
+  <title>Gateway Resources FZCO</title>
+<meta name="description" content="Gateway Resources is an independent trading house involved in the procurement, logistics, financing and distribution of recyclable plastic and rubber materials, supporting global recycling and the circular economy.">  
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="chatbot.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+ 
 </head>
 <body>
   <!-- Header Section -->  
   <header id="header">
     <div class="container">
       <a href="index.html" class="logo" id="logo-link">
-        <img src="assets/logo.jpeg" alt="Gateway Resources DMCC logo">
+        <img src="assets/logo.jpeg" alt="Gateway Resources FZCO logo">
       </a>
       
       <nav>
@@ -219,79 +224,70 @@ Gateway Resources facilitates the global trade of recyclable commodities through
      PREMIUM LOCATION SECTION
 ======================= -->
 
-<section class="premium-location">
+<section class="premium-location" id="location">
 
     <div class="location-bg"></div>
 
     <div class="container">
 
-        <div class="location-title">
+        <div class="location-header">
 
-            <span>GLOBAL HEADQUARTERS</span>
+            <div class="location-badge">
+                <span></span>
+                GLOBAL HEADQUARTERS
+            </div>
 
-            <h2>Visit Our Dubai Office</h2>
+            <h2>
+                Dubai.<br>
+                Where Global Trade Meets Sustainability.
+            </h2>
 
             <p>
-                Strategically located in the heart of Dubai,
-                Gateway Resources connects global recycling,
-                commodities, and sustainable supply chains.
+                Strategically positioned in one of the world's leading business hubs,
+                Gateway Resources connects global recycling industries through
+                intelligent sourcing, responsible trading and seamless logistics.
             </p>
 
         </div>
 
-
         <div class="location-grid">
 
-            <!-- LEFT -->
+            <!-- Left Premium Card -->
 
             <div class="location-card">
 
-                <div class="pin">
-
-                    <div class="pulse"></div>
-
+                <div class="location-icon">
                     📍
-
                 </div>
 
-                <h3>Gateway Resources DMCC</h3>
+                <small>Corporate Office</small>
+
+                <h3>Gateway Resources FZCO</h3>
 
                 <p>
-
                     2707, Jumeirah Bay Tower X3<br>
-
                     Jumeirah Lake Towers<br>
-
                     PO Box 12502<br>
-
-                    Dubai<br>
-
-                    United Arab Emirates
-
+                    Dubai, United Arab Emirates
                 </p>
 
                 <div class="location-buttons">
 
-                    <a href="https://maps.google.com/?q=Jumeirah+Bay+Tower+X3+Dubai"
-                    target="_blank">
-
-                        Get Directions
-
+                    <a href="https://maps.google.com/?q=Jumeirah+Bay+Tower+X3+Dubai" target="_blank">
+                        Get Directions →
                     </a>
 
-                  
                 </div>
 
             </div>
 
-
-            <!-- RIGHT -->
+            <!-- Right Map -->
 
             <div class="map-box">
 
                 <iframe
-                src="https://www.google.com/maps?q=Jumeirah+Bay+Tower+X3,+Dubai&output=embed"
-                loading="lazy">
+                    src="https://www.google.com/maps?q=Jumeirah+Bay+Tower+X3,+Dubai&output=embed"
+                    loading="lazy">
                 </iframe>
 
             </div>
@@ -386,23 +382,62 @@ Gateway Resources facilitates the global trade of recyclable commodities through
     </div>
   </section>
 
-  <!-- Footer Section -->
   <footer>
-    <div class="container">
-      <div class="footer-copy">
-        <p>Copyright &copy; 2026 Gateway Resources DMCC | All Rights Reserved</p>
-      </div>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="#about">About</a>
-        <a href="#segments">Segments</a>
-        <a href="#contact">Contact</a>
-      </div>
+  <div class="container footer-bottom">
+
+    <div class="footer-copy">
+      <p>Copyright &copy; 2026 Gateway Resources FZCO | All Rights Reserved</p>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <div class="footer-social">
+  <a href="YOUR_LINKEDIN_URL" target="_blank" class="linkedin-logo">
+    <i class="fab fa-linkedin-in"></i>
+    <span>LinkedIn</span>
+</a>
+</div>
 
+  </div>
+</footer>
 
+<!-- EcoAI Chatbot -->
+<div id="chat-toggle">
+    <img src="assets/chatlogo.jpeg" alt="Gateway AI Assistant">
+</div>
+
+<div id="chat-widget">
+  <div class="chat-header">
+    <span>♻️ AI Assistant</span>
+    <button id="close-chat">&times;</button>
+  </div>
+
+  <div id="chat-messages">
+  <div class="bot-message">
+    👋 Welcome to Gateway Resources FZCO! How can I help you today?
+  </div>
+</div>
+
+<div class="quick-buttons">
+  <button class="quick-btn">♻️ Plastic</button>
+  <button class="quick-btn">🛞 Rubber</button>
+  <button class="quick-btn">🏢 Company</button>
+  <button class="quick-btn">📞 Contact</button>
+  <button class="quick-btn">📍 Location</button>
+</div>
+
+  <div class="chat-input">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Ask about our company..."
+    />
+    <button id="send-btn">Send</button>
+  </div>
+</div>
+
+<script src="knowledge.js"></script>
+<script src="chatbot.js"></script>
+<script src="script.js"></script>
+<script src="product-modal.js"></script>
+ 
 </body>
 </html>
