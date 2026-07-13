@@ -203,10 +203,13 @@ setTimeout(() => {
 
 
   function getReply(message) {
-    const text = message
-      .toLowerCase()
-      .replace(/[^\w\s]/gi, "")
-      .trim();
+
+ const text = message
+  .toLowerCase()
+  .replace(/[^\w\s]/gi, "")
+  .trim();
+
+
 
     // HOME / MAIN
     if (text.includes("home") || text.includes("main page") || text.includes("homepage")) {
@@ -311,11 +314,6 @@ setTimeout(() => {
       };
     }
 
-    if (text.includes("about") || text.includes("company") || text.includes("gateway") || text.includes("who are you") || text.includes("what is")) {
-      return {
-        message: "🏢 <b>About Gateway Resources FZCO</b>:<br>We are an independent commodity trading house headquartered in Dubai, UAE. We specialize in procurement, SCM logistics, financing, and global distribution of recyclable rubber and plastic materials."
-      };
-    }
 
     if (text.includes("service") || text.includes("provide") || text.includes("what do you do") || text.includes("operation")) {
       return {
@@ -352,7 +350,13 @@ setTimeout(() => {
         message: "🛡️ <b>High Compliance Standards</b>:<br>We strictly work with organizations adhering to international environmental policies. All our trade partners, vendors, and clients undergo periodic audits and complete due diligence reports."
       };
     }
-
+for (const item of faq) {
+  if (item.keywords.some(keyword => text.includes(keyword))) {
+    return {
+      message: item.answer
+    };
+  }
+}
     return {
       message: "🤖 I'm here to help! You can ask me about our <b>Company</b>, <b>Plastic</b> or <b>Rubber</b> products, <b>Services</b>, <b>Dubai Location</b>, or how to <b>Contact</b> our trading desk."
     };
