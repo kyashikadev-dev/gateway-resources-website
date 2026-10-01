@@ -1,5 +1,5 @@
-const faq = [
-
+console.log("FAQ JS LOADED");
+window.faq = [
 {
 keywords: [
 "what do you do",

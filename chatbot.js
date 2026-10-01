@@ -267,8 +267,7 @@ setTimeout(() => {
     }
 
     // TIME & DATE QUESTIONS
-    if (text.includes("time") || text.includes("date") || text.includes("clock") || text.includes("today") || text.includes("now") || text.includes("current")) {
-      const dubTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai", dateStyle: "medium", timeStyle: "short" });
+    if (/\b(time|date|clock|today|current time|what time)\b/.test(text)) {      const dubTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai", dateStyle: "medium", timeStyle: "short" });
       const locTime = new Date().toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
       return {
         message: `🕒 <b>Real-Time Date & Time</b>:<br>• <b>Your Local Time</b>: ${locTime}<br>• <b>Dubai Headquarters Time</b>: ${dubTime} (GST, UTC+4)<br><br>Our trading desk is active during Dubai business hours (9:00 AM - 6:00 PM, Mon-Fri).`
@@ -304,7 +303,7 @@ setTimeout(() => {
 
     if (text.includes("rubber") || text.includes("tyre") || text.includes("tire")) {
       return {
-        message: "🛞 <b>Rubber Segment</b>:<br>We procurement and supply end-of-life vehicle tyres (automobile, truck, OTR, aviation), rubber crumbs, granules, and devulcanised rubber compounds to responsible recyclers.<br><br><a href='rubber-segment.html'>Explore Rubber Segment →</a>"
+        message: "🛞 <b>Rubber Segment</b>:<br>We procure and supply end-of-life vehicle tyres (automobile, truck, OTR, aviation), rubber crumbs, granules, and devulcanised rubber compounds to responsible recyclers.<br><br><a href='rubber-segment.html'>Explore Rubber Segment →</a>"
       };
     }
 
@@ -350,7 +349,8 @@ setTimeout(() => {
         message: "🛡️ <b>High Compliance Standards</b>:<br>We strictly work with organizations adhering to international environmental policies. All our trade partners, vendors, and clients undergo periodic audits and complete due diligence reports."
       };
     }
-for (const item of faq) {
+const faqList = (typeof faq !== "undefined") ? faq : [];
+for (const item of faqList) {
   if (item.keywords.some(keyword => text.includes(keyword))) {
     return {
       message: item.answer

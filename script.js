@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (slides.length > 0) {
     let currentSlide = 0;
     let slideInterval;
-    const intervalTime = 5000;
+    const intervalTime = 4400;
 
     const showSlide = (index) => {
       // Remove active classes
@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
       slides[currentSlide].classList.add('active');
       if (dots[currentSlide]) {
         dots[currentSlide].classList.add('active');
+      }
+            const slideVideo = slides[currentSlide].querySelector('video');
+      if (slideVideo) {
+        slideVideo.currentTime = 0;
+        slideVideo.play();
       }
     };
 
@@ -104,6 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start slider autoplay
     startAutoplay();
+
+    // restart the timer once the first video really starts playing
+    const firstVideo = slides[0].querySelector('video');
+    if (firstVideo) {
+      firstVideo.addEventListener('playing', () => startAutoplay(), { once: true });
+    }
   }
 
   // ==========================================
@@ -233,15 +244,17 @@ function runAboutAnimation() {
 window.addEventListener("load", runAboutAnimation);
 const stack = document.getElementById("tiltStack");
 
-stack.addEventListener("mousemove", (e) => {
-  let x = (e.offsetX / stack.offsetWidth) - 0.5;
-  let y = (e.offsetY / stack.offsetHeight) - 0.5;
+if (stack) {
+  stack.addEventListener("mousemove", (e) => {
+    let x = (e.offsetX / stack.offsetWidth) - 0.5;
+    let y = (e.offsetY / stack.offsetHeight) - 0.5;
 
-  stack.style.transform = `rotateY(${x * 20}deg) rotateX(${y * -20}deg)`;
-  stack.classList.add("active");
-});
+    stack.style.transform = `rotateY(${x * 20}deg) rotateX(${y * -20}deg)`;
+    stack.classList.add("active");
+  });
 
-stack.addEventListener("mouseleave", () => {
-  stack.style.transform = "rotateY(0deg) rotateX(0deg)";
-  stack.classList.remove("active");
-});
+  stack.addEventListener("mouseleave", () => {
+    stack.style.transform = "rotateY(0deg) rotateX(0deg)";
+    stack.classList.remove("active");
+  });
+}
