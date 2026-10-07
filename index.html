@@ -177,8 +177,8 @@ Gateway Resources facilitates the global trade of recyclable commodities through
       
       <div class="segments-grid">
         <!-- Rubber Segment -->
-        <div class="segment-card">
-          <div class="segment-image">
+        <div class="segment-card" data-fx="rubber">
+                    <div class="segment-image">
             <img src="assets/rubber_banner.png" alt="Used Rubber Tyres">
             <div class="segment-image-overlay"></div>
           </div>
@@ -278,6 +278,16 @@ Gateway Resources facilitates the global trade of recyclable commodities through
                 <p><a href="mailto:info@gatewayresources.net">info@gatewayresources.net</a></p>
               </div>
             </div>
+
+            <!-- Map (moved under General Inquiries) -->
+            <div class="contact-map">
+              <h3>Our Location</h3>
+              <iframe
+                src="https://www.google.com/maps?q=Jumeirah+Bay+Tower+X3,+Dubai&output=embed"
+                loading="lazy"
+                allowfullscreen>
+              </iframe>
+            </div>
           </div>
           
         </div>
@@ -312,60 +322,47 @@ Gateway Resources facilitates the global trade of recyclable commodities through
         </div>
       </div>
 
-      <div class="contact-map">
-        <h3>Our Location</h3>
-        <iframe
-          src="https://www.google.com/maps?q=Jumeirah+Bay+Tower+X3,+Dubai&output=embed"
-          loading="lazy"
-          allowfullscreen>
-        </iframe>
-      </div>
-
     </div>
   </section>
-
-  <footer>
+<footer>
   <div class="container">
 
-    <div class="ft7-boxes">
+    <div class="ft8-main">
 
-      <div class="ft7-box">
-        <span class="ft7-ico"><i class="fas fa-location-dot"></i></span>
-        <div>
-          <small>Address</small>
-          <p>2707, Jumeirah Bay Tower X3, Jumeirah Lake Towers, PO Box 12502, Dubai, UAE</p>
-        </div>
+      <div class="ft8-address">
+        <small class="ft8-label">Address</small>
+        <p>2707, Jumeirah Bay Tower X3,<br>Jumeirah Lake Towers, PO Box 12502,<br>Dubai, UAE</p>
       </div>
 
-      <a class="ft7-box ft7-link" href="tel:+97145755378">
-        <span class="ft7-ico"><i class="fas fa-phone"></i></span>
-        <div>
-          <small>Phone</small>
-          <p>+971 4575 5378</p>
-        </div>
-      </a>
-
-      <a class="ft7-box ft7-link" href="mailto:info@gatewayresources.net">
-        <span class="ft7-ico"><i class="fas fa-envelope"></i></span>
-        <div>
-          <small>Email</small>
-          <p>info@gatewayresources.net</p>
-        </div>
-      </a>
-
-      <a class="ft7-box ft7-link ft7-in" href="https://www.linkedin.com/company/gateway-resources/" target="_blank" rel="noopener noreferrer">
-        <span class="ft7-ico"><i class="fab fa-linkedin-in"></i></span>
-        <div>
-          <small>LinkedIn</small>
-          <p>Follow our company page</p>
-        </div>
-      </a>
+      <div class="ft8-contact">
+        <small class="ft8-label">Contact</small>
+        <ul class="ft8-contacts">
+          <li>
+            <a href="tel:+97145755378">
+              <i class="fas fa-phone"></i>
+              <span>+971 4575 5378</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@gatewayresources.net">
+              <i class="fas fa-envelope"></i>
+              <span>info@gatewayresources.net</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/gateway-resources/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin-in"></i>
+              <span>Follow our company page</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
     </div>
 
-    <div class="ft7-bottom">
-      <p class="ft7-copy">Copyright &copy; 2026 Gateway Resources FZCO | All Rights Reserved</p>
-      <nav class="ft7-nav">
+    <div class="ft8-bottom">
+      <p class="ft8-copy">Copyright &copy; 2026 Gateway Resources FZCO | All Rights Reserved</p>
+      <nav class="ft8-nav">
         <a href="index.html">Home</a>
         <a href="#about">About</a>
         <a href="#segments">Segments</a>
@@ -415,6 +412,7 @@ Gateway Resources facilitates the global trade of recyclable commodities through
 <script src="chatbot.js"></script>
 <script src="script.js"></script>
 <script src="product-modal.js"></script>
+<script src="rubber-fx.js"></script>
  
 </body>
 </html>

@@ -2920,7 +2920,7 @@ footer .ft-bottom p {
 
 @media (max-width: 1024px) {
   footer .ft-grid {
-    grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr auto;
     gap: 40px;
   }
 }
@@ -3735,4 +3735,552 @@ footer .ft7-nav a:hover {
     padding-right: 0;
   }
 }
+/* ===== Footer option 8 ===== */
+footer .ft8-main {
+  display: grid;
+    grid-template-columns: 1fr auto;
+  gap: 48px;
+  padding: 56px 0 40px;
+  align-items: start;
+}
 
+footer .ft8-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+footer .ft8-address p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+footer .ft8-contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+footer .ft8-contacts a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #c9d4de;
+  font-size: 15px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer .ft8-contacts i {
+  width: 20px;
+  text-align: center;
+  font-size: 16px;
+  color: #1fb58a;
+}
+
+footer .ft8-contacts a:hover {
+  color: #ffffff;
+}
+
+footer .ft8-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 0 28px;
+}
+
+footer .ft8-copy {
+  margin: 0;
+  font-size: 13px;
+  color: #8a9bab;
+}
+
+footer .ft8-nav {
+  display: flex;
+  gap: 28px;
+}
+
+footer .ft8-nav a {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer .ft8-nav a:hover {
+  color: #1fb58a;
+}
+
+/* Phones and small tablets */
+@media (max-width: 768px) {
+  footer .ft8-main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 40px 0 32px;
+  }
+
+  footer .ft8-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ===== Footer option 8: elegant touches ===== */
+footer {
+  border-top: 3px solid #1fb58a;
+}
+
+footer .ft8-label::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: #1fb58a;
+  margin-top: 10px;
+}
+
+footer .ft8-contacts a {
+  color: #ffffff;
+}
+
+footer .ft8-contacts a:hover {
+  color: #1fb58a;
+}
+
+footer .ft8-contacts i {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(31, 181, 138, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+footer .ft8-contacts {
+  gap: 12px;
+}
+
+/* ===== Contact: line up the form with Office Location ===== */
+@media (min-width: 992px) {
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: contents;
+  }
+
+  .contact-info > h2 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .contact-info > .contact-description {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .contact-info > .contact-details {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .contact-form-container {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0;
+  }
+}
+
+/* ===== Contact: map under General Inquiries ===== */
+.contact-details .contact-map {
+  margin-top: 4px;
+}
+
+.contact-details .contact-map h3 {
+  margin: 0 0 10px;
+}
+
+.contact-details .contact-map iframe {
+  width: 100%;
+  height: 220px;
+}
+
+@media (min-width: 992px) {
+  .contact-info > .contact-details {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .contact-details .contact-map {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-details .contact-map iframe {
+    flex: 1;
+    height: auto;
+    min-height: 140px;
+  }
+}
+
+/* ===== Contact: smaller gaps + no boxes on the left ===== */
+@media (min-width: 992px) {
+  .contact-layout {
+    row-gap: 0;
+  }
+}
+
+.contact-info > h2 {
+  margin-bottom: 16px;
+}
+
+.contact-info > .contact-description {
+  margin: 0 0 28px;
+}
+
+.contact-details {
+  gap: 0;
+  margin-top: 0;
+}
+
+.contact-details .contact-item,
+.contact-details .contact-item:hover {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e3ebe8;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  padding: 16px 0;
+  margin: 0;
+}
+
+.contact-details .contact-item:first-child {
+  padding-top: 0;
+}
+
+.contact-details .contact-map {
+  margin-top: 20px;
+}
+
+/* ===== Segments: stronger grey background ===== */
+#segments.bg-light {
+  background: #e9edf0;
+}
+
+/* ===== Segments: more space under the heading ===== */
+#segments .segments-intro {
+  padding-top: 24px;
+}
+
+/* ===== About Us + Contact Us: green line centered under heading ===== */
+.about-text h2,
+.contact-info > h2 {
+  display: inline-block;
+  justify-self: start;
+}
+
+.about-text h2::after,
+.contact-info > h2::after {
+  content: "";
+  display: block;
+  position: static;
+  left: auto;
+  right: auto;
+  transform: none;
+  width: 40px;
+  height: 3px;
+  background: #1b7a64;
+  margin: 12px auto 0;
+}
+
+/* ===== Our Segments: same heading line as About Us ===== */
+#segments .section-title::after {
+  content: "";
+  display: block;
+  position: static;
+  left: auto;
+  right: auto;
+  transform: none;
+  width: 40px;
+  height: 3px;
+  background: #1b7a64;
+  margin: 12px auto 0;
+}
+
+/* ===== Segments: center the green buttons ===== */
+#segments .btn-segment {
+  display: flex;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+}
+
+/* ===== Segments: bigger cards ===== */
+#segments .container {
+  max-width: 1200px;
+}
+
+#segments .segments-grid {
+  gap: 32px;
+}
+
+#segments .segment-image {
+  height: 240px;
+}
+
+#segments .segment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#segments .segment-body {
+  padding: 32px 40px 36px;
+}
+/* ===== Segments: full width, small gap in the middle ===== */
+#segments .segments-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+
+@media (max-width: 860px) {
+  #segments .segments-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ===== Segments: remove width limit + taller cards ===== */
+#segments .segments-grid {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#segments .segment-card {
+  min-height: 640px;
+}
+
+#segments .segment-image {
+  height: 320px;
+}
+
+/* ===== Segments: cover the whole page width ===== */
+#segments .container {
+  max-width: none;
+  width: 100%;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media (max-width: 860px) {
+  #segments .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* ===== Segments: clearer, centered paragraph ===== */
+#segments .segment-body p {
+  color: #3d4a55;
+  font-size: 15px;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 520px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#segments .btn-segment {
+  margin-top: 0;
+}
+
+/* ===== Segments: move paragraph a little down ===== */
+#segments .segment-body p {
+  padding-top: 16px;
+}
+
+/* ===== Segments: dark green outline on hover ===== */
+#segments .segment-card {
+  border: 2px solid transparent;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#segments .segment-card:hover {
+  border-color: #1b7a64;
+}
+
+/* ===== Rubber card: 3D tyre lap ===== */
+#segments .segment-card[data-fx="rubber"] {
+  position: relative;
+  overflow: visible;
+}
+
+#segments .segment-card[data-fx="rubber"]:hover {
+  border-color: transparent;
+}
+
+#segments .segment-card[data-fx="rubber"] .segment-image {
+  border-radius: 8px 8px 0 0;
+}
+
+.rfx-layer {
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.rfx-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.rfx-layer.is-on .rfx-track {
+  opacity: 1;
+}
+
+.rfx-track rect {
+  fill: none;
+  stroke: #1b7a64;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.rfx-tyre {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 46px;
+  height: 46px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35));
+  will-change: transform;
+}
+
+.rfx-tyre.is-on {
+  opacity: 1;
+}
+
+.rfx-tyre::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 45%);
+}
+
+.rfx-wheel,
+.rfx-wheel svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rfx-crumb {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2a2e31;
+  animation: rfx-crumb 0.9s ease-out forwards;
+}
+
+@keyframes rfx-crumb {
+  to {
+    transform: translate(var(--dx), var(--dy)) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.rfx-chip {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  max-width: calc(100% - 32px);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  align-items: center;
+  padding: 10px 16px 10px 10px;
+  border-radius: 12px;
+  background: rgba(8, 20, 28, 0.82);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.rfx-chip.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+.rfx-step {
+  grid-row: span 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #1b7a64;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.rfx-chip strong {
+  font-size: 14px;
+  line-height: 1.25;
+  transition: opacity 0.18s ease;
+}
+
+.rfx-chip small {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #c9d4de;
+  transition: opacity 0.18s ease;
+}
+
+.rfx-chip.is-swap strong,
+.rfx-chip.is-swap small {
+  opacity: 0;
+}
