@@ -177,8 +177,8 @@ Gateway Resources facilitates the global trade of recyclable commodities through
       
       <div class="segments-grid">
         <!-- Rubber Segment -->
-        <div class="segment-card" data-fx="rubber">
-                    <div class="segment-image">
+        <div class="segment-card">
+          <div class="segment-image">
             <img src="assets/rubber_banner.png" alt="Used Rubber Tyres">
             <div class="segment-image-overlay"></div>
           </div>
@@ -192,7 +192,7 @@ Gateway Resources facilitates the global trade of recyclable commodities through
           </div>
         </div>
 
-        <!-- Plastic Segment -->
+    <!-- Plastic Segment -->
 <div class="segment-card">
   <div class="segment-image">
     <img src="assets/plastic_banner2.png" alt="Plastic Recycling Materials">
@@ -222,8 +222,6 @@ Gateway Resources facilitates the global trade of recyclable commodities through
 <!-- =======================
      PREMIUM LOCATION SECTION
 ======================= -->
-
-
 
   <!-- Contact Us Section -->
   <section class="section-padding" id="contact">
@@ -411,8 +409,73 @@ Gateway Resources facilitates the global trade of recyclable commodities through
 <script src="knowledge.js"></script>
 <script src="chatbot.js"></script>
 <script src="script.js"></script>
-<script src="product-modal.js"></script>
-<script src="rubber-fx.js"></script>
- 
+<script src="product-modal.js"></script> 
+<script>
+  // Make each segment card open its page when clicked anywhere
+  document.querySelectorAll('#segments .segment-card').forEach(function (card) {
+    var link = card.querySelector('.btn-segment');
+    if (!link) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      window.location.href = link.href;
+    });
+  });
+</script>
 </body>
+<script>
+  // Scroll effects: Segments slides over About, then cards slide in from the sides
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var about = document.getElementById('about');
+    var segments = document.getElementById('segments');
+    if (!about || !segments) return;
+
+    // 1. Stacking effect (laptops and desktops only)
+    var desktop = window.matchMedia('(min-width: 992px)');
+    function setStack() {
+      if (desktop.matches && !reduce) {
+        document.body.classList.add('stack-on');
+        about.style.top = Math.min(0, window.innerHeight - about.offsetHeight) + 'px';
+      } else {
+        document.body.classList.remove('stack-on');
+        about.style.top = '';
+      }
+    }
+    setStack();
+    window.addEventListener('resize', setStack);
+    window.addEventListener('load', setStack);
+
+    // 2. Heading fades up, cards slide in from the sides
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var items = [
+      [segments.querySelector('.section-title'), 'sr-up'],
+      [segments.querySelector('.segments-intro'), 'sr-up']
+    ];
+    var cards = segments.querySelectorAll('.segment-card');
+    if (cards[0]) items.push([cards[0], 'sr-left']);
+    if (cards[1]) items.push([cards[1], 'sr-right']);
+
+    items.forEach(function (it) {
+      if (it[0]) it[0].classList.add('sr', it[1]);
+    });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.classList.add('sr-in');
+        io.unobserve(el);
+        // After arriving, go back to the normal hover effect
+        setTimeout(function () {
+          el.classList.remove('sr', 'sr-up', 'sr-left', 'sr-right', 'sr-in');
+        }, 1400);
+      });
+    }, { threshold: 0.2 });
+
+    items.forEach(function (it) {
+      if (it[0]) io.observe(it[0]);
+    });
+  })();
+</script>
 </html>
