@@ -12,6 +12,96 @@
  
 </head>
 <body>
+<script>
+  // Intro: "GATEWAY RESOURCES" with the banner inside. Scrolling zooms into the banner.
+  // Shows on the first visit only, and removes itself once the visitor has entered.
+  // Add ?intro to the address to see it again.
+  (function () {
+    var force = location.search.indexOf('intro') > -1;
+    try {
+      if (localStorage.getItem('grIntroSeen') && !force) return;
+    } catch (e) { return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var html = document.documentElement;
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    html.classList.add('gr-intro-on', 'gr-intro-hideui');
+
+    // White layer: the black letters become windows onto the real banner
+    var mask = document.createElement('div');
+    mask.className = 'gr-intro-mask';
+    mask.setAttribute('aria-hidden', 'true');
+    mask.innerHTML = '<div class="gr-intro-text">GATEWAY<br>RESOURCES</div>';
+    document.body.appendChild(mask);
+    var text = mask.firstChild;
+
+    var hint = document.createElement('div');
+    hint.className = 'gr-intro-hint';
+    hint.innerHTML = 'Scroll to enter <span>↓</span>';
+    document.body.appendChild(hint);
+
+    function clamp(x) { return Math.min(Math.max(x, 0), 1); }
+    function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var hero = document.querySelector('.hero');
+      if (!hero) {
+        mask.remove(); hint.remove();
+        html.classList.remove('gr-intro-on', 'gr-intro-hideui');
+        return;
+      }
+
+      // Give the banner extra scrolling room so it can stay while zooming
+      var stage = document.createElement('div');
+      stage.className = 'gr-stage';
+      hero.parentNode.insertBefore(stage, hero);
+      stage.appendChild(hero);
+      window.scrollTo(0, 0);
+
+      var ticking = false, finished = false;
+
+      function update() {
+        ticking = false;
+        if (finished) return;
+        var travel = stage.offsetHeight - hero.offsetHeight;
+        var p = clamp((window.scrollY - stage.offsetTop) / travel);
+        var z = ease(clamp(p / 0.85));
+
+        text.style.transform = 'translateZ(0) scale(' + (1 + z * 24) + ')';
+        mask.style.opacity = 1 - clamp((p - 0.35) / 0.45);
+        mask.style.visibility = p >= 0.8 ? 'hidden' : '';
+        hint.style.opacity = 1 - clamp(p / 0.06);
+        html.classList.toggle('gr-intro-hideui', p < 0.3);
+
+        if (p >= 1) finish(travel);
+      }
+
+      // Visitor has entered: remove the intro for good, without any jump
+      function finish(travel) {
+        finished = true;
+        try { localStorage.setItem('grIntroSeen', '1'); } catch (e) {}
+        var y = window.scrollY;
+        stage.parentNode.insertBefore(hero, stage);
+        stage.remove();
+        mask.remove();
+        hint.remove();
+        html.classList.remove('gr-intro-on', 'gr-intro-hideui');
+        window.scrollTo(0, Math.max(0, y - travel));
+        if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', update);
+      }
+
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  })();
+</script>
   <!-- Header Section -->  
   <header id="header">
     <div class="container">

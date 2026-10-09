@@ -4578,3 +4578,85 @@ body.stack-on #contact {
   opacity: 1;
   transform: none;
 }
+
+/* ===== First-visit intro: scroll into GATEWAY RESOURCES ===== */
+html.gr-intro-on .gr-stage {
+  position: relative;
+  height: 220vh;
+}
+
+html.gr-intro-on .gr-stage .hero {
+  position: sticky;
+  top: 0;
+}
+
+/* White layer; black letters become windows onto the real banner */
+.gr-intro-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: #ffffff;
+  mix-blend-mode: screen;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gr-intro-text {
+  color: #000000;
+  font-size: clamp(48px, 11vw, 170px);
+  font-weight: 800;
+  line-height: 0.88;
+  text-align: center;
+  white-space: nowrap;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* "Scroll to enter" hint */
+.gr-intro-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 901;
+  color: #1b7a64;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.gr-intro-hint span {
+  display: inline-block;
+  margin-left: 6px;
+  animation: gr-hint-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes gr-hint-bounce {
+  50% { transform: translateY(5px); }
+}
+
+/* Banner text, arrows and dots: hidden at the start, fade in during the zoom */
+html.gr-intro-on .hero .slide > .container,
+html.gr-intro-on .hero .slider-control,
+html.gr-intro-on .hero .slider-dots {
+  transition: opacity 0.6s ease;
+}
+
+html.gr-intro-hideui .hero .slide > .container,
+html.gr-intro-hideui .hero .slider-control,
+html.gr-intro-hideui .hero .slider-dots {
+  opacity: 0;
+}
+/* Intro: menu hidden during the intro, fades in with the banner */
+html.gr-intro-on #header {
+  transition: opacity 0.5s ease;
+}
+
+html.gr-intro-hideui #header {
+  opacity: 0;
+  pointer-events: none;
+}
