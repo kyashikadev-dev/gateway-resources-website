@@ -1806,32 +1806,7 @@ border:2px solid rgba(176,141,87,.4);
 .tilt-card:hover .card-front::before{
     left: 140%;
 }
-.highlight-card::before{
-    content:"";
-    position:absolute;
-    top:-60%;
-    left:-100%;
-    width:60%;
-    height:250%;
-    background:linear-gradient(
-        115deg,
-        transparent 0%,
-        rgba(255,255,255,0.15) 30%,
-        rgba(255,255,255,0.85) 50%,
-        rgba(255,255,255,0.15) 70%,
-        transparent 100%
-    );
-    transform:rotate(25deg);
-    transition:left 0.9s ease;
-}
 
-.highlight-card:hover::before{
-    left:160%;
-}
-
-.highlight-card:hover::before{
-    left:150%;
-}
 .highlight-icon{
     width:70px;
     height:70px;
@@ -2490,13 +2465,7 @@ select,
 .highlight-card:hover {
   box-shadow: none;
 }
-/* ===== Remove the shine from the cards ===== */
-.highlight-card::before,
-.highlight-card:hover::before,
-.card-front::before,
-.tilt-card:hover .card-front::before {
-  display: none;
-}
+
 /* ===== More space between the slider and the 3 cards ===== */
 .highlights-grid {
   margin-top: 110px;
@@ -5381,4 +5350,74 @@ html.gr-intro-hideui #header {
 /* Image grows slightly on hover */
 .highlights-grid .highlight-card:hover .highlight-icon {
   transform: scale(1.06);
+}
+
+/* ===== Highlight cards: green border with moving light on hover ===== */
+/* ===== Highlight cards: green border with moving light on hover ===== */
+.highlights-grid .highlight-card {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 16px !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 1px #c9ead9 !important;
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+.highlights-grid .highlight-card::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -60% !important;
+  z-index: -2 !important;
+  background: conic-gradient(from 0deg, #1b7a64 0 78%, #9fe1cb 87%, #ffffff 90%, #9fe1cb 93%, #1b7a64 100%) !important;
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
+}
+
+.highlights-grid .highlight-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 4px !important;
+  z-index: -1 !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+}
+
+.highlights-grid .highlight-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1) !important;
+}
+
+.highlights-grid .highlight-card:hover::before {
+  opacity: 1 !important;
+  animation: hl-spin 4s linear infinite !important;
+}
+
+@keyframes hl-spin {
+  to { transform: rotate(360deg); }
+}
+/* Highlight cards: softer light on the border */
+.highlights-grid .highlight-card::before {
+  background: conic-gradient(
+    from 0deg,
+    #1b7a64 0 82%,
+    #3f9c82 88%,
+    #7cc8ac 91%,
+    #3f9c82 94%,
+    #1b7a64 100%
+  ) !important;
+}
+
+
+/* Segment cards: same softer light as the highlight cards */
+#segments .segment-card::before {
+  background: conic-gradient(
+    from 0deg,
+    #1b7a64 0 82%,
+    #3f9c82 88%,
+    #7cc8ac 91%,
+    #3f9c82 94%,
+    #1b7a64 100%
+  );
 }
