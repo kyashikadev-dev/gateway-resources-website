@@ -25,8 +25,13 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#segments" class="active">Segments</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li class="nav-dropdown">
+          <a href="index.html#segments" class="active">Segments <i class="fas fa-chevron-down nav-caret"></i></a>
+          <ul class="nav-submenu">
+            <li><a href="rubber-segment.html">Rubber Segment</a></li>
+            <li><a href="plastic-segment.html">Plastic Segment</a></li>
+          </ul>
+        </li>        <li><a href="index.html#contact">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -290,41 +295,60 @@
       </main>
 
       <!-- SIDEBAR -->
-      <aside class="sidebar">
-
-        <div class="widget">
-          <h3 class="widget-title">Navigate</h3>
-          <div class="sidebar-nav">
-            <a href="index.html">Home</a>
-            <a href="rubber-segment.html">Rubber – Segment</a>
-            <a href="plastic-segment.html" class="active">Plastic – Segment</a>
-          </div>
-        </div>
-
-      </aside>
+      
 
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
- <footer>
-  <div class="container footer-bottom">
+<footer>
+  <div class="container">
 
-    <div class="footer-copy">
-      <p>Copyright &copy; 2026 Gateway Resources FZCO | All Rights Reserved</p>
+    <div class="ft8-main">
+
+      <div class="ft8-address">
+        <small class="ft8-label">Address</small>
+        <p>2707, Jumeirah Bay Tower X3,<br>Jumeirah Lake Towers, PO Box 12502,<br>Dubai, UAE</p>
+      </div>
+
+      <div class="ft8-contact">
+        <small class="ft8-label">Contact</small>
+        <ul class="ft8-contacts">
+          <li>
+            <a href="tel:+97145755378">
+              <i class="fas fa-phone"></i>
+              <span>+971 4575 5378</span>
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@gatewayresources.net">
+              <i class="fas fa-envelope"></i>
+              <span>info@gatewayresources.net</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/gateway-resources/" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-linkedin-in"></i>
+              <span>Follow our company page</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
-    <div class="footer-social">
-  <a href="https://www.linkedin.com/company/gateway-resources/" target="_blank" rel="noopener noreferrer" class="linkedin-logo">
-    <i class="fab fa-linkedin-in"></i>
-    <span>LinkedIn</span>
-</a>
-</div>
+    <div class="ft8-bottom">
+      <p class="ft8-copy">Copyright &copy; 2026 Gateway Resources FZCO | All Rights Reserved</p>
+      <nav class="ft8-nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#segments">Segments</a>
+      </nav>
+    </div>
 
   </div>
 </footer>
-
 
 
 <!-- EcoAI Chatbot -->
@@ -333,8 +357,8 @@
 </div>
 <div id="chat-widget">
   <div class="chat-header">
-    <span>♻️ AI Assistant</span>
-    <button id="close-chat">&times;</button>
+    <span class="chat-title"><img src="assets/chatlogo.jpeg" alt="" class="chat-title-logo">AI Assistant</span>
+        <button id="close-chat">&times;</button>
   </div>
 
   <div id="chat-messages">
@@ -380,7 +404,7 @@
 <script src="faq.js"></script>
 <script src="chatbot.js"></script>
 <script src="script.js"></script>
-<script src="product-modal.js"></script>
+<script src="commodities.js"></script>
 <script>
   const heroVideo = document.querySelector('.subpage-hero-bg video');
   const PLASTIC_END = 6.5;

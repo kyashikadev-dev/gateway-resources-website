@@ -4660,3 +4660,725 @@ html.gr-intro-hideui #header {
   opacity: 0;
   pointer-events: none;
 }
+/* ===== Header: Segments dropdown ===== */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown .nav-caret {
+  font-size: 10px;
+  margin-left: 6px;
+  transition: transform 0.25s ease;
+}
+
+.nav-submenu {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  min-width: 210px;
+  background: #ffffff;
+  border-radius: 10px;
+  border-top: 3px solid #1b7a64;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  z-index: 1000;
+}
+
+/* Invisible bridge so the menu doesn't close while moving the mouse down */
+.nav-submenu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -18px;
+  height: 18px;
+}
+
+.nav-dropdown:hover .nav-submenu,
+.nav-dropdown:focus-within .nav-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown:focus-within .nav-caret {
+  transform: rotate(180deg);
+}
+
+#header .nav-links .nav-submenu li {
+  display: block;
+  margin: 0;
+}
+
+#header .nav-links .nav-submenu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: #1e2a33;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+#header .nav-links .nav-submenu a::after {
+  display: none;
+}
+
+#header .nav-links .nav-submenu a:hover {
+  background: #eef6f3;
+  color: #1b7a64;
+}
+
+/* Phones: show Rubber and Plastic directly under Segments */
+@media (max-width: 768px) {
+  .nav-submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    min-width: 0;
+    padding: 4px 0 0 14px;
+    background: transparent;
+    border-top: 0;
+    box-shadow: none;
+  }
+
+  .nav-submenu::before,
+  .nav-dropdown .nav-caret {
+    display: none;
+  }
+
+  #header .nav-links .nav-submenu a {
+    color: inherit;
+    font-size: 13px;
+    padding: 8px 0;
+  }
+}
+
+/* Segment pages: content uses the full width */
+.subpage-body .subpage-grid {
+  grid-template-columns: 1fr;
+}
+/* ===== Segments dropdown: thin green outline + green divider ===== */
+.nav-submenu {
+  padding: 0;
+  min-width: 190px;
+  top: calc(100% + 16px);
+  border: 1px solid #1b7a64;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Small pointer at the top, outlined in green */
+.nav-submenu::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border-left: 1px solid #1b7a64;
+  border-top: 1px solid #1b7a64;
+  border-radius: 2px 0 0 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Faint green line between the items */
+#header .nav-links .nav-submenu li + li {
+  border-top: 1px solid rgba(27, 122, 100, 0.25);
+}
+
+#header .nav-links .nav-submenu a {
+  padding: 12px 18px;
+  border-radius: 0;
+}
+
+#header .nav-links .nav-submenu li:first-child a {
+  border-radius: 9px 9px 0 0;
+}
+
+#header .nav-links .nav-submenu li:last-child a {
+  border-radius: 0 0 9px 9px;
+}
+
+#header .nav-links .nav-submenu a:hover {
+  background: #f6f9f8;
+  color: #1b7a64;
+}
+
+/* Phones: keep the simple indented list */
+@media (max-width: 768px) {
+  .nav-submenu {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .nav-submenu::after {
+    display: none;
+  }
+
+  #header .nav-links .nav-submenu li + li {
+    border-top: 0;
+  }
+}
+
+/* ===== Segments dropdown FINAL: dark, uppercase ===== */
+.nav-submenu {
+  background: #0b1622;
+  border: 0;
+  border-radius: 8px;
+  padding: 6px 0;
+  min-width: 220px;
+  top: calc(100% + 14px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Remove the pointer and divider from the previous style */
+.nav-submenu::after {
+  display: none;
+}
+
+#header .nav-links .nav-submenu li + li {
+  border-top: 0;
+}
+
+#header .nav-links .nav-submenu a,
+#header .nav-links .nav-submenu li:first-child a,
+#header .nav-links .nav-submenu li:last-child a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 20px;
+  border-radius: 0;
+  color: #d6e2e8;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+/* Green arrow, hidden until hover */
+#header .nav-links .nav-submenu a::after {
+  display: block;
+  content: "→";
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+  color: #5dcaa5;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#header .nav-links .nav-submenu a:hover {
+  background: rgba(93, 202, 165, 0.1);
+  color: #ffffff;
+}
+
+#header .nav-links .nav-submenu a:hover::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* Phones: keep the simple indented list inside the phone menu */
+@media (max-width: 768px) {
+  .nav-submenu {
+    background: transparent;
+    box-shadow: none;
+    padding: 4px 0 0 14px;
+    min-width: 0;
+  }
+
+  #header .nav-links .nav-submenu a,
+  #header .nav-links .nav-submenu li:first-child a,
+  #header .nav-links .nav-submenu li:last-child a {
+    color: inherit;
+    padding: 8px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  #header .nav-links .nav-submenu a::after {
+    display: none;
+  }
+}
+/* ===== Segments dropdown FINAL: green, same size as main menu ===== */
+.nav-submenu {
+  background: #1b7a64;
+  min-width: 240px;
+  padding: 6px 0;
+  top: calc(100% + 12px);
+  box-shadow: 0 14px 30px rgba(27, 122, 100, 0.3);
+}
+
+#header .nav-links .nav-submenu a,
+#header .nav-links .nav-submenu li:first-child a,
+#header .nav-links .nav-submenu li:last-child a {
+  color: #ffffff;
+  font-size: inherit;
+  padding: 14px 22px;
+}
+
+#header .nav-links .nav-submenu a::after {
+  color: #ffffff;
+}
+
+#header .nav-links .nav-submenu a:hover {
+  background: #14614f;
+  color: #ffffff;
+}
+
+/* Phones: keep the simple indented list */
+@media (max-width: 768px) {
+  .nav-submenu {
+    background: transparent;
+    box-shadow: none;
+    min-width: 0;
+  }
+
+  #header .nav-links .nav-submenu a,
+  #header .nav-links .nav-submenu li:first-child a,
+  #header .nav-links .nav-submenu li:last-child a {
+    color: inherit;
+    padding: 8px 0;
+  }
+}
+
+/* Segments dropdown: more space below the heading */
+.nav-submenu {
+  top: calc(100% + 36px);
+}
+
+/* Keep the menu open while the mouse moves down through the gap */
+.nav-submenu::before {
+  top: -42px;
+  height: 42px;
+}
+/* ===== Segment pages: material boxes sized to the longest name ===== */
+.products-section .products-list {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+/* Tablets: 2 per row */
+@media (max-width: 992px) {
+  .products-section .products-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phones: 1 per row, full width */
+@media (max-width: 600px) {
+  .products-section .products-list {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Commodities: list on the left, photo preview on the right ===== */
+.products-section.cx-on .cx-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.products-section.cx-on .products-list {
+  display: block;
+}
+
+/* List rows */
+.products-section.cx-on .product-item,
+.products-section.cx-on .product-item:hover {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  margin: 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #eef1f3;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+  color: #6b7a84;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.products-section.cx-on .product-item:first-child {
+  border-top: 1px solid #eef1f3;
+}
+
+.products-section.cx-on .product-item:hover,
+.products-section.cx-on .product-item.is-active {
+  color: #1e2a33;
+}
+
+/* Short green line in front of the active material */
+.products-section.cx-on .product-item::before {
+  content: "";
+  display: block;
+  position: static;
+  width: 0;
+  height: 2px;
+  margin-right: 0;
+  background: #1b7a64;
+  transition: width 0.25s ease, margin-right 0.25s ease;
+}
+
+.products-section.cx-on .product-item.is-active::before {
+  width: 18px;
+  margin-right: 12px;
+}
+
+/* Hide the old tick and pop-up icons */
+.products-section.cx-on .product-item-icon,
+.products-section.cx-on .product-item-hint {
+  display: none;
+}
+
+/* Photo preview */
+.cx-preview {
+  position: sticky;
+  top: 110px;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e9edf0;
+}
+
+.cx-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.3s ease;
+}
+
+.cx-img.is-fading {
+  opacity: 0;
+}
+
+.cx-missing {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #6b7a84;
+  font-size: 14px;
+}
+
+.cx-preview.is-missing .cx-missing {
+  display: flex;
+}
+
+/* "03 / 09" counter */
+.cx-count {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e2a33;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Category and name at the bottom of the photo */
+.cx-cap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 22px 20px 24px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+  color: #ffffff;
+}
+
+.cx-cap small {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.cx-cap span {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Green progress line */
+.cx-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 4px;
+  width: 0;
+  background: #5dcaa5;
+  transition: width 0.35s ease;
+}
+
+/* Phones: photo on top, list below */
+@media (max-width: 768px) {
+  .products-section.cx-on .cx-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cx-preview {
+    position: relative;
+    top: 0;
+    order: -1;
+  }
+}
+/* Commodities: photo hidden until a material is hovered */
+.cx-preview {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.cx-preview.is-on {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+/* Phones: no empty space above the list until a material is tapped */
+@media (max-width: 768px) {
+  .cx-preview:not(.is-on) {
+    display: none;
+  }
+}
+
+/* ===== Commodities: boxes again, sized to the longest name ===== */
+.products-section.cx-on .cx-layout {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+/* All boxes as wide as the longest name */
+.products-section.cx-on .products-list {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.products-section.cx-on .product-item,
+.products-section.cx-on .product-item:hover,
+.products-section.cx-on .product-item:first-child {
+  gap: 12px;
+  padding: 12px 20px 12px 16px;
+  background: #f7f8f8;
+  border: 0;
+  border-left: 3px solid #1b7a64;
+  border-radius: 4px;
+  color: #1e2a33;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Hovered material */
+.products-section.cx-on .product-item:hover,
+.products-section.cx-on .product-item.is-active {
+  background: #e6f3ee;
+  color: #1b7a64;
+}
+
+/* Bring back the tick, remove the short green line */
+.products-section.cx-on .product-item-icon {
+  display: flex;
+}
+
+.products-section.cx-on .product-item::before {
+  display: none;
+}
+
+/* Phones: boxes full width */
+@media (max-width: 768px) {
+  .products-section.cx-on .products-list {
+    display: grid;
+  }
+}
+
+/* Commodities: smaller photo, about the height of the list */
+.products-section.cx-on .cx-layout {
+  gap: 40px;
+}
+
+.cx-preview {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 3;
+}
+
+/* Commodities: photo centered, same height as the list */
+.products-section.cx-on .cx-layout {
+  align-items: stretch;
+}
+
+.cx-preview {
+  position: relative;
+  top: 0;
+  align-self: stretch;
+  justify-self: center;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+/* Phones: full width under the heading */
+@media (max-width: 768px) {
+  .cx-preview {
+    align-self: auto;
+    justify-self: stretch;
+    width: 100%;
+  }
+}
+
+
+/* Commodities: 2 columns of boxes for long lists (plastic page) */
+.products-section.cx-on.cx-two .products-list {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Phones: back to 1 column */
+@media (max-width: 768px) {
+  .products-section.cx-on.cx-two .products-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Commodities FINAL: lifting cards ===== */
+.products-section.cx-on .product-item,
+.products-section.cx-on .product-item:first-child {
+  background: #ffffff;
+  border: 0;
+  border-left: 3px solid #1b7a64;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  color: #1e2a33;
+  transform: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+              border-left-width 0.25s ease, color 0.2s ease;
+}
+
+/* Hovered card: slides right, lifts, thicker green edge */
+.products-section.cx-on .product-item:hover,
+.products-section.cx-on .product-item.is-active {
+  background: #ffffff;
+  border-left-width: 6px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+  color: #1b7a64;
+  transform: translateX(6px);
+}
+
+/* No ticks */
+.products-section.cx-on .product-item-icon {
+  display: none;
+}
+
+/* Commodities slideshow: slower, softer fade between photos */
+.cx-img {
+  transition: opacity 0.4s ease;
+}
+/* Commodities: switch photos instantly, no fade */
+.cx-img,
+.cx-img.is-fading {
+  opacity: 1;
+  transition: none;
+}
+/* Chatbot header: Gateway logo instead of the recycle emoji */
+.chat-header .chat-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-header .chat-title-logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+/* Chatbot header: logo and title on one line */
+.chat-header-title > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Chatbot header: logo only, no background */
+.chat-header .chat-title-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 0;
+  background: none;
+  object-fit: cover;
+  object-position: left center;
+}
+
+/* ===== Highlight cards: 3D images instead of icons ===== */
+.highlights-grid .highlight-card .highlight-icon,
+.highlights-grid .highlight-card:hover .highlight-icon {
+  width: 140px;
+  height: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transition: transform 0.35s ease;
+}
+
+/* Hide the old line icons */
+.highlights-grid .highlight-icon svg {
+  display: none;
+}
+
+/* One image per card */
+.highlights-grid .highlight-card:nth-child(1) .highlight-icon {
+  background-image: url("assets/icons/trading.png");
+}
+
+.highlights-grid .highlight-card:nth-child(2) .highlight-icon {
+  background-image: url("assets/icons/industries.png");
+}
+
+.highlights-grid .highlight-card:nth-child(3) .highlight-icon {
+  background-image: url("assets/icons/standards.png");
+}
+
+/* Image grows slightly on hover */
+.highlights-grid .highlight-card:hover .highlight-icon {
+  transform: scale(1.06);
+}

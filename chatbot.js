@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (headerSpan) {
       headerSpan.innerHTML = `
         <div class="chat-header-title">
-          <span>♻️ AI Assistant</span>
-          <div class="chat-status">
+      <span><img src="assets/logo.png" alt="" class="chat-title-logo"> AI Assistant</span>
+                <div class="chat-status">
             <span class="status-dot"></span>
             <span class="status-text">Online</span>
           </div>

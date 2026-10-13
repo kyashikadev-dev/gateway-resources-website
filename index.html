@@ -114,7 +114,13 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#segments">Segments</a></li>
+                    <li class="nav-dropdown">
+            <a href="#segments">Segments <i class="fas fa-chevron-down nav-caret"></i></a>
+            <ul class="nav-submenu">
+              <li><a href="rubber-segment.html">Rubber Segment</a></li>
+              <li><a href="plastic-segment.html">Plastic Segment</a></li>
+            </ul>
+          </li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -467,8 +473,8 @@ Gateway Resources facilitates the global trade of recyclable commodities through
 
 <div id="chat-widget">
   <div class="chat-header">
-    <span>♻️ AI Assistant</span>
-    <button id="close-chat">&times;</button>
+    <span class="chat-title"><img src="assets/chatlogo.jpeg" alt="" class="chat-title-logo">AI Assistant</span>
+        <button id="close-chat">&times;</button>
   </div>
 
   <div id="chat-messages">
@@ -511,6 +517,36 @@ Gateway Resources facilitates the global trade of recyclable commodities through
       window.location.href = link.href;
     });
   });
+</script>
+<script>
+  // Fix "About" links: About Us is pinned for the scroll effect,
+  // so we calculate its real position and scroll there.
+  (function () {
+    var about = document.getElementById('about');
+    if (!about) return;
+
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('a[href="#about"], a[href="index.html#about"]');
+      if (!link) return;
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Briefly unpin About Us to measure where it really starts
+      var pinned = document.body.classList.contains('stack-on');
+      if (pinned) document.body.classList.remove('stack-on');
+      var header = document.getElementById('header');
+      var offset = header ? header.offsetHeight : 0;
+      var y = about.getBoundingClientRect().top + window.scrollY - offset;
+      if (pinned) document.body.classList.add('stack-on');
+
+      window.scrollTo({ top: y, behavior: 'smooth' });
+      history.replaceState(null, '', '#about');
+
+      // Close the phone menu if it's open
+      var nav = document.getElementById('nav-links');
+      if (nav) nav.classList.remove('active', 'open', 'show');
+    }, true);
+  })();
 </script>
 </body>
 <script>
