@@ -5713,3 +5713,11 @@ body { overflow-x: clip; }
   box-shadow: 0 0 15px rgba(17, 89, 76, 0.6);
 }
 .gr-intro-hint { color: #11594c; }
+
+/* Phones: footer heading lines centred under ADDRESS and CONTACT */
+@media (max-width: 480px) {
+  footer .ft8-label::after {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
