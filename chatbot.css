@@ -786,3 +786,75 @@ width:calc(100% - 20px);
   height: 100%;
   display: block;
 }
+
+/* =====================================================
+   CHATBOT IN LOGO GREEN
+   Main #11594C, dark #143934, both taken from the logo
+   ===================================================== */
+
+/* Round button */
+#chat-toggle {
+  border-color: #11594c;
+  box-shadow: 0 8px 25px rgba(17, 89, 76, 0.25);
+}
+
+/* Header */
+.chat-header {
+  background: linear-gradient(135deg, #143934, #11594c);
+}
+
+/* Your messages */
+.user-message {
+  background: #11594c;
+}
+
+/* Quick buttons */
+.quick-btn {
+  border-color: #11594c;
+  color: #11594c;
+}
+.quick-btn:hover {
+  background: #11594c;
+  color: #ffffff;
+}
+
+/* Send button */
+.chat-input button {
+  background: #11594c;
+  transition: background 0.25s ease;
+}
+.chat-input button:hover {
+  background: #143934;
+}
+
+/* Typing box: green outline when you click in it */
+.chat-input input:focus {
+  border-color: #11594c;
+}
+
+/* Links inside the bot's answers */
+.bot-message a {
+  color: #11594c;
+}
+.bot-message a:hover {
+  color: #143934;
+}
+
+/* Welcome bubble next to the round button */
+.chat-tooltip {
+  background: linear-gradient(135deg, #143934, #11594c);
+}
+.chat-tooltip::after {
+  background: #11594c;
+}
+/* Chatbot header: logo on a white circle so it shows on the green */
+.chat-header .chat-title-logo {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: left center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}

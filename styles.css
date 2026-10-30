@@ -5631,3 +5631,85 @@ body { overflow-x: clip; }
     gap: 24px;
   }
 }
+
+/* =====================================================
+   LOGO GREEN: every green on the site (except the footer)
+   Main #11594C, dark #143934, both taken from the logo
+   ===================================================== */
+:root {
+  --color-primary: #11594c;
+  --color-primary-dark: #143934;
+  --color-primary-light: #e7eeed;
+  --color-accent: #11594c;
+}
+
+/* Menu */
+#header .nav-links a::after { background-color: #11594c; }
+#header.scrolled .nav-links a.active { color: #11594c; }
+
+/* Segments dropdown */
+.nav-submenu {
+  background: #11594c;
+  box-shadow: 0 14px 30px rgba(17, 89, 76, 0.3);
+}
+#header .nav-links .nav-submenu a:hover { background: #143934; }
+@media (max-width: 768px) {
+  .nav-submenu { background: transparent; box-shadow: none; }
+}
+
+/* Heading underlines */
+.about-text h2::after,
+.contact-info > h2::after,
+#segments .section-title::after { background: #11594c; }
+
+/* Highlight cards: frame and moving light */
+.highlights-grid .highlight-card { outline-color: #11594c; }
+.highlights-grid .highlight-card:hover { outline-color: transparent; }
+.highlights-grid .highlight-card::before {
+  background: conic-gradient(from 0deg, #11594c 0 82%, #357267 88%, #709b94 91%, #357267 94%, #11594c 100%) !important;
+}
+.highlight-icon { background: #e7eeed; }
+
+/* Segment cards: moving light */
+#segments .segment-card::before {
+  background: conic-gradient(from 0deg, #11594c 0 82%, #357267 88%, #709b94 91%, #357267 94%, #11594c 100%);
+}
+
+/* Rubber card effect */
+.rfx-track rect { stroke: #11594c; }
+.rfx-step { background: #11594c; }
+
+/* Segment pages: material list */
+.products-section.cx-on .product-item,
+.products-section.cx-on .product-item:first-child { border-left-color: #11594c; }
+.products-section.cx-on .product-item:hover,
+.products-section.cx-on .product-item.is-active { color: #11594c; }
+.cx-bar { background: #709b94; }
+
+/* Contact section */
+.contact-item-icon {
+  background: #11594c;
+  box-shadow: 0 10px 25px rgba(17, 89, 76, 0.25);
+}
+.contact-item { border-color: rgba(17, 89, 76, 0.12); }
+.contact-item:hover {
+  border-color: rgba(17, 89, 76, 0.35);
+  box-shadow: 0 12px 26px rgba(17, 89, 76, 0.12);
+}
+.contact-form-container { border-color: rgba(17, 89, 76, 0.08); border-top-color: #11594c; }
+.form-control:focus { box-shadow: 0 0 0 3px rgba(17, 89, 76, 0.15); }
+.contact-map h3 { color: #11594c; }
+.contact-map h3::after { background: #11594c; }
+.map-btn { background: #11594c; }
+.map-btn:hover { background: #143934; }
+
+/* Location badge and intro hint */
+.location-badge {
+  color: #11594c;
+  border-color: rgba(17, 89, 76, 0.25);
+}
+.location-badge span {
+  background: #11594c;
+  box-shadow: 0 0 15px rgba(17, 89, 76, 0.6);
+}
+.gr-intro-hint { color: #11594c; }
