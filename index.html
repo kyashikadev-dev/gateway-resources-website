@@ -13,9 +13,9 @@
 </head>
 <body>
 <script>
-  // Intro: "GATEWAY RESOURCES" with the banner inside. Scrolling zooms into the banner.
-  // Shows on the first visit only, and removes itself once the visitor has entered.
-  // Add ?intro to the address to see it again.
+  // Intro: "GATEWAY RESOURCES" with the banner inside.
+  // One scroll: a line draws and the letters spread, then a gentle zoom and fade reveal the banner.
+  // Shows on the first visit only. Add ?intro to the address to see it again.
   (function () {
     var force = location.search.indexOf('intro') > -1;
     try {
@@ -25,81 +25,84 @@
 
     var html = document.documentElement;
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    html.classList.add('gr-intro-on', 'gr-intro-hideui');
+    window.scrollTo(0, 0);
+    html.classList.add('gr-intro-on', 'gr-intro-hideui', 'gr-intro-lock');
 
-    // White layer: the black letters become windows onto the real banner
+    // White layer: the black letters and line become windows onto the real banner
     var mask = document.createElement('div');
     mask.className = 'gr-intro-mask';
     mask.setAttribute('aria-hidden', 'true');
-    mask.innerHTML = '<div class="gr-intro-text">GATEWAY<br>RESOURCES</div>';
+    mask.innerHTML =
+      '<div class="gr-intro-text">GATEWAY<br>RESOURCES</div>' +
+      '<div class="gr-intro-line"></div>';
     document.body.appendChild(mask);
-    var text = mask.firstChild;
+    var text = mask.querySelector('.gr-intro-text');
+    var line = mask.querySelector('.gr-intro-line');
 
     var hint = document.createElement('div');
     hint.className = 'gr-intro-hint';
     hint.innerHTML = 'Scroll to enter <span>↓</span>';
+    hint.style.pointerEvents = 'auto';
+    hint.style.cursor = 'pointer';
     document.body.appendChild(hint);
 
+    var started = false;
+    var DURATION = 2400;   // whole animation (2.4 seconds)
+
+    function ease(x) { return x < 0.5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2; }
     function clamp(x) { return Math.min(Math.max(x, 0), 1); }
-    function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var hero = document.querySelector('.hero');
-      if (!hero) {
-        mask.remove(); hint.remove();
-        html.classList.remove('gr-intro-on', 'gr-intro-hideui');
-        return;
+    function play(e) {
+      if (e && e.cancelable) e.preventDefault();
+      if (started) return;
+      started = true;
+      hint.style.opacity = 0;
+
+      var t0 = performance.now();
+      var revealed = false;
+
+      function step(now) {
+        var p = Math.min((now - t0) / DURATION, 1);
+        var spread = ease(clamp(p / 0.4));           // part 1: line draws, letters spread
+        var zoom = ease(clamp((p - 0.4) / 0.6));     // part 2: gentle zoom and fade
+
+        text.style.letterSpacing = (spread * 0.06) + 'em';
+        line.style.width = (spread * 55) + 'vw';
+        line.style.opacity = 1 - zoom;
+        text.style.transform = 'translateZ(0) scale(' + (1 + zoom * 0.25) + ')';
+        mask.style.opacity = 1 - zoom;
+
+        // Banner text, arrows and menu fade in
+        if (p > 0.5 && !revealed) {
+          revealed = true;
+          html.classList.remove('gr-intro-hideui');
+        }
+
+        if (p < 1) requestAnimationFrame(step);
+        else finish();
       }
+      requestAnimationFrame(step);
+    }
 
-      // Give the banner extra scrolling room so it can stay while zooming
-      var stage = document.createElement('div');
-      stage.className = 'gr-stage';
-      hero.parentNode.insertBefore(stage, hero);
-      stage.appendChild(hero);
-      window.scrollTo(0, 0);
+    function finish() {
+      mask.remove();
+      hint.remove();
+      html.classList.remove('gr-intro-lock', 'gr-intro-on');
+      try { localStorage.setItem('grIntroSeen', '1'); } catch (e) {}
+      if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+      window.removeEventListener('wheel', play);
+      window.removeEventListener('touchmove', play);
+      window.removeEventListener('keydown', onKey);
+    }
 
-      var ticking = false, finished = false;
+    function onKey(e) {
+      if (['ArrowDown', 'PageDown', ' ', 'Spacebar', 'Enter'].indexOf(e.key) > -1) play(e);
+    }
 
-      function update() {
-        ticking = false;
-        if (finished) return;
-        var travel = stage.offsetHeight - hero.offsetHeight;
-        var p = clamp((window.scrollY - stage.offsetTop) / travel);
-        var z = ease(clamp(p / 0.85));
-
-        text.style.transform = 'translateZ(0) scale(' + (1 + z * 24) + ')';
-        mask.style.opacity = 1 - clamp((p - 0.35) / 0.45);
-        mask.style.visibility = p >= 0.8 ? 'hidden' : '';
-        hint.style.opacity = 1 - clamp(p / 0.06);
-        html.classList.toggle('gr-intro-hideui', p < 0.3);
-
-        if (p >= 1) finish(travel);
-      }
-
-      // Visitor has entered: remove the intro for good, without any jump
-      function finish(travel) {
-        finished = true;
-        try { localStorage.setItem('grIntroSeen', '1'); } catch (e) {}
-        var y = window.scrollY;
-        stage.parentNode.insertBefore(hero, stage);
-        stage.remove();
-        mask.remove();
-        hint.remove();
-        html.classList.remove('gr-intro-on', 'gr-intro-hideui');
-        window.scrollTo(0, Math.max(0, y - travel));
-        if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
-        window.removeEventListener('scroll', onScroll);
-        window.removeEventListener('resize', update);
-      }
-
-      function onScroll() {
-        if (!ticking) { ticking = true; requestAnimationFrame(update); }
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-    });
+    window.addEventListener('wheel', play, { passive: false });
+    window.addEventListener('touchmove', play, { passive: false });
+    window.addEventListener('keydown', onKey);
+    hint.addEventListener('click', play);
   })();
 </script>
   <!-- Header Section -->  
@@ -446,7 +449,7 @@ Gateway Resources facilitates the global trade of recyclable commodities through
           <li>
             <a href="https://www.linkedin.com/company/gateway-resources/" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-linkedin-in"></i>
-              <span>Follow our company page</span>
+              <span>Follow us on LinkedIn</span>
             </a>
           </li>
         </ul>
@@ -560,7 +563,7 @@ Gateway Resources facilitates the global trade of recyclable commodities through
     // 1. Stacking effect (laptops and desktops only)
     var desktop = window.matchMedia('(min-width: 992px)');
     function setStack() {
-      if (desktop.matches && !reduce) {
+      if (false && desktop.matches && !reduce) {
         document.body.classList.add('stack-on');
         about.style.top = Math.min(0, window.innerHeight - about.offsetHeight) + 'px';
       } else {

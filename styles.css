@@ -5421,3 +5421,213 @@ html.gr-intro-hideui #header {
     #1b7a64 100%
   );
 }
+
+/* Intro: page stays still while the intro plays */
+html.gr-intro-lock,
+html.gr-intro-lock body {
+  overflow: hidden;
+}
+
+/* Intro: name and line stacked, line starts hidden */
+.gr-intro-mask {
+  flex-direction: column;
+}
+
+.gr-intro-line {
+  width: 0;
+  height: 6px;
+  margin-top: 28px;
+  background: #000000;
+}
+/* Intro: keep the chatbot hidden until the intro is finished */
+.gr-intro-mask {
+  z-index: 2147483000;
+}
+
+.gr-intro-hint {
+  z-index: 2147483001;
+}
+
+html.gr-intro-on #chat-toggle,
+html.gr-intro-on #chat-widget {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+/* Highlight cards: permanent green frame, same thickness on every card */
+.highlights-grid .highlight-card {
+  background: #ffffff !important;
+  box-shadow: none !important;
+  outline: 4px solid #1b7a64;
+  outline-offset: -4px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, outline-color 0.3s ease !important;
+}
+
+/* On hover, the outline steps aside so the moving light shows */
+.highlights-grid .highlight-card:hover {
+  outline-color: transparent;
+}
+
+/* ===== Footer: LinkedIn (icon + name, no box, no arrow) ===== */
+footer .ft8-contacts a[href*="linkedin"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+}
+footer .ft8-contacts a[href*="linkedin"] > i.fa-linkedin-in {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(31, 181, 138, 0.12);
+  color: #0A66C2;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+footer .ft8-li-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+footer .ft8-li-text small {
+  font-size: 12px;
+  font-weight: 400;
+  color: #9fb0ba;
+}
+footer .ft8-contacts a[href*="linkedin"]:hover .ft8-li-text {
+  color: #5dcaa5;
+}
+/* ===== Highlight cards: bigger images ===== */
+.highlights-grid .highlight-card .highlight-icon,
+.highlights-grid .highlight-card:hover .highlight-icon {
+  width: 180px;
+  height: 180px;
+}
+/* Ship and factory: zoom in more, so they match the shield */
+.highlights-grid .highlight-card:nth-child(1) .highlight-icon,
+.highlights-grid .highlight-card:nth-child(2) .highlight-icon {
+  background-size: 120%;
+}
+/* Shield: a little smaller inside its box, so it doesn't look oversized */
+.highlights-grid .highlight-card:nth-child(3) .highlight-icon {
+  background-size: 85%;
+}
+/* Phones: slightly smaller */
+@media (max-width: 768px) {
+  .highlights-grid .highlight-card .highlight-icon,
+  .highlights-grid .highlight-card:hover .highlight-icon {
+    width: 150px;
+    height: 150px;
+  }
+}
+/* ===== Banner fills the whole first screen ===== */
+.hero {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* ===== Standard, responsive sizing ===== */
+/* Base text size: follows the visitor's browser settings */
+html {
+  font-size: 100%;
+}
+
+/* Content width: standard maximum, centred, side spacing grows with the screen */
+.container {
+  max-width: 1280px;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+/* Banner: always fills the first screen, but never gets too short when zoomed in */
+.hero {
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+}
+
+/* Banner text: grows and shrinks smoothly with the screen */
+.slide-content h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.15;
+}
+.slide-content p {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+/* ===== Responsive: fits all laptops, tablets and phones ===== */
+
+/* Base: follow the visitor's text size, never scroll sideways */
+html { font-size: 100%; }
+body { overflow-x: clip; }
+
+/* Content width: standard maximum, spacing grows with the screen */
+.container {
+  max-width: 1280px;
+  padding-left: clamp(16px, 4vw, 40px);
+  padding-right: clamp(16px, 4vw, 40px);
+}
+
+/* Banner: always fills the first screen */
+.hero {
+  height: 100vh;
+  height: 100svh;
+  min-height: 560px;
+}
+.slide-content h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.15;
+}
+.slide-content p {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+}
+
+/* Section headings and spacing: grow and shrink smoothly */
+.section-title,
+.about-text h2,
+.contact-info h2 {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+}
+.section-padding {
+  padding-top: clamp(56px, 8vw, 100px);
+  padding-bottom: clamp(56px, 8vw, 100px);
+}
+
+/* Highlight cards: 3 in a row on laptops, fewer on smaller screens automatically */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(16px, 2.5vw, 32px);
+}
+
+/* Tablets and small laptops */
+@media (max-width: 992px) {
+  .about-content,
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Smaller tablets and phones */
+@media (max-width: 860px) {
+  .segments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  .ft8-main,
+  .ft8-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
