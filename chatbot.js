@@ -364,3 +364,66 @@ for (const item of faqList) {
 
 
 });
+/* ===== Chatbot design F (sketch): white header on top, green icon strip + chat below ===== */
+(function () {
+  var widget = document.getElementById('chat-widget');
+  if (!widget || widget.querySelector('.cb-side')) return;
+  var header = widget.querySelector('.chat-header');
+
+  // Logo in the header: the green hexagon icon
+  if (header) {
+    var hLogo = header.querySelector('.chat-title-logo');
+    if (!hLogo) {
+      hLogo = document.createElement('img');
+      hLogo.className = 'chat-title-logo';
+      hLogo.alt = '';
+      var titleSpot = header.querySelector('span') || header;
+      titleSpot.insertBefore(hLogo, titleSpot.firstChild);
+    }
+    hLogo.src = 'assets/chat-icon.png';
+  }
+
+  // Messages, quick buttons and typing box go in the main column (the header stays on top)
+  var main = document.createElement('div');
+  main.className = 'cb-main';
+  Array.prototype.slice.call(widget.children).forEach(function (el) {
+    if (el !== header) main.appendChild(el);
+  });
+
+  // Green strip with one icon per topic
+  var side = document.createElement('div');
+  side.className = 'cb-side';
+  side.innerHTML =
+    '<button type="button" class="cb-tab is-on" data-go="chat" title="Chat" aria-label="Chat"><i class="fas fa-comment-dots"></i></button>' +
+    '<button type="button" class="cb-tab" data-go="Plastic" title="Plastic" aria-label="Plastic"><i class="fas fa-recycle"></i></button>' +
+    '<button type="button" class="cb-tab" data-go="Rubber" title="Rubber" aria-label="Rubber"><i class="fas fa-life-ring"></i></button>' +
+    '<button type="button" class="cb-tab" data-go="Company" title="Company" aria-label="Company"><i class="fas fa-building"></i></button>' +
+    '<button type="button" class="cb-tab" data-go="Contact" title="Contact" aria-label="Contact"><i class="fas fa-phone"></i></button>' +
+    '<button type="button" class="cb-tab" data-go="Location" title="Location" aria-label="Location"><i class="fas fa-location-dot"></i></button>';
+
+  // Strip + main column side by side, under the header
+  var body = document.createElement('div');
+  body.className = 'cb-body';
+  body.appendChild(side);
+  body.appendChild(main);
+  widget.appendChild(body);
+
+  // Clicking an icon = clicking the matching quick button
+  side.addEventListener('click', function (e) {
+    var tab = e.target.closest('.cb-tab');
+    if (!tab) return;
+    var tabs = side.querySelectorAll('.cb-tab');
+    for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('is-on', tabs[i] === tab);
+
+    var go = tab.getAttribute('data-go');
+    if (go === 'chat') {
+      var input = document.getElementById('chat-input');
+      if (input) input.focus();
+      return;
+    }
+    var buttons = widget.querySelectorAll('.quick-btn');
+    for (var k = 0; k < buttons.length; k++) {
+      if (buttons[k].textContent.indexOf(go) > -1) { buttons[k].click(); break; }
+    }
+  });
+})();

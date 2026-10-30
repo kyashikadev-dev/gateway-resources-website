@@ -858,3 +858,214 @@ width:calc(100% - 20px);
   object-position: left center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
+/* ===== Chatbot design F: side panel ===== */
+#chat-widget {
+  flex-direction: row;
+  width: 380px;
+  height: 520px;
+  background: #ffffff;
+}
+
+/* Green strip */
+.cb-side {
+  width: 60px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #11594c, #143934);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0;
+}
+.cb-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.cb-logo img {
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  object-fit: cover;
+  object-position: left center;
+}
+.cb-tab {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cb-tab:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.cb-tab.is-on {
+  background: #ffffff;
+  color: #11594c;
+}
+
+/* Main column */
+.cb-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+#chat-messages {
+  min-height: 0;
+  padding: 16px;
+}
+
+/* Header: white, with title and status */
+#chat-widget .chat-header {
+  height: 60px;
+  background: #ffffff;
+  color: #1e2a33;
+  border-bottom: 1px solid #e3e8ea;
+}
+#chat-widget .chat-header .chat-title-logo {
+  display: none;
+}
+#chat-widget .chat-header button {
+  color: #11594c;
+}
+#chat-widget .status-text {
+  color: #6b7a84;
+}
+
+/* Topics: tidy list with arrows */
+#chat-widget .quick-buttons {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0;
+  margin: 0 14px 12px;
+  border: 1px solid #d5e2df;
+  border-radius: 12px;
+  overflow: hidden;
+}
+#chat-widget .quick-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 0;
+  background: #ffffff;
+  color: #11594c;
+  font-size: 0.82rem;
+  text-align: left;
+}
+#chat-widget .quick-btn + .quick-btn {
+  border-top: 1px solid #e3e8ea;
+}
+#chat-widget .quick-btn::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+#chat-widget .quick-btn:hover {
+  background: #e7eeed;
+  color: #11594c;
+  transform: none;
+}
+#chat-widget .quick-btn:hover::after {
+  transform: translateX(3px);
+}
+
+/* Typing box */
+#chat-widget .chat-input {
+  padding: 12px;
+  border-top: 1px solid #e3e8ea;
+}
+#chat-widget .chat-input input {
+  background: #f3f6f5;
+  border: 1px solid transparent;
+  padding: 12px 16px;
+}
+#chat-widget .chat-input input:focus {
+  background: #ffffff;
+  border-color: #11594c;
+}
+
+/* Phones */
+@media (max-width: 500px) {
+  #chat-widget {
+    width: calc(100% - 20px);
+    height: 70vh;
+  }
+  .cb-side {
+    width: 52px;
+  }
+  .cb-tab {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+}
+/* Topic list hidden: the side icons do the same job */
+#chat-widget .quick-buttons {
+  display: none;
+}
+/* Side strip logo: whole symbol, centred in the white circle */
+.cb-logo img {
+  object-fit: contain;
+  object-position: center;
+  padding: 5px;
+}
+/* ===== Chatbot: layout from the sketch ===== */
+/* Header on top, strip + chat below */
+#chat-widget {
+  flex-direction: column;
+}
+.cb-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+#chat-widget .chat-header {
+  flex-shrink: 0;
+  height: 64px;
+}
+
+/* Logo in the white header: plain green symbol, no circle */
+#chat-widget .chat-header .chat-title-logo {
+  display: block;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Header logo: always the green hexagon icon */
+#chat-widget .chat-header .chat-title-logo {
+  content: url("assets/chat-icon.png");
+  width: 36px;
+  height: 36px;
+}
+/* Header: "Online" lined up under "AI Assistant" */
+#chat-widget .chat-header-title > span:first-child,
+#chat-widget .chat-header .chat-title {
+  gap: 10px;
+}
+#chat-widget .chat-header .chat-status {
+  padding-left: 46px;
+  margin-top: 1px;
+}
+/* Header: bigger "AI Assistant" */
+#chat-widget .chat-header-title > span:first-child,
+#chat-widget .chat-header .chat-title {
+  font-size: 1.15rem;
+}
