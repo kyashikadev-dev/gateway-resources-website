@@ -95,7 +95,7 @@
       show(i);
     });
     // Phones: tap shows it, then the slideshow continues later
-    it.addEventListener('click', function () {
+    it.addEventListener('click', function () { if (window.innerWidth <= 768) preview.scrollIntoView({ behavior: 'smooth', block: 'center' });
       show(i);
       play();
     });

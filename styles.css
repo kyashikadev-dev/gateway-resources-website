@@ -5721,3 +5721,37 @@ body { overflow-x: clip; }
     margin-right: auto;
   }
 }
+/* Phones: LinkedIn lined up on the left, like phone and email */
+@media (max-width: 480px) {
+  footer .ft8-contacts a[href*="linkedin"] {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+/* ===== Segment pages on phones: photo on top, list below ===== */
+@media (max-width: 768px) {
+  .products-section.cx-on .cx-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cx-preview {
+    order: -1;
+    width: 100%;
+    justify-self: stretch;
+    align-self: auto;
+  }
+
+  .products-section.cx-on .products-list {
+    display: grid;
+    width: 100%;
+  }
+
+  .products-section.cx-on .product-item,
+  .products-section.cx-on .product-item:hover,
+  .products-section.cx-on .product-item:first-child {
+    white-space: normal;
+  }
+}
