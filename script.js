@@ -258,3 +258,26 @@ if (stack) {
     stack.classList.remove("active");
   });
 }
+/* ===== About photos: tap to switch on phones and tablets (laptop hover unchanged) ===== */
+(function () {
+  // Only on touch screens; laptops with a mouse keep the hover effect
+  if (!window.matchMedia('(hover: none)').matches) return;
+
+  document.querySelectorAll('.tilt-stack').forEach(function (stack) {
+    var x0 = 0, y0 = 0;
+
+    stack.addEventListener('touchstart', function (e) {
+      x0 = e.touches[0].clientX;
+      y0 = e.touches[0].clientY;
+    }, { passive: true });
+
+    stack.addEventListener('touchend', function (e) {
+      var t = e.changedTouches[0];
+      // Finger moved more than 10px = scrolling, not a tap
+      if (Math.abs(t.clientX - x0) > 10 || Math.abs(t.clientY - y0) > 10) return;
+      // Stop the phone from also sending a fake "mouse hover", which would undo the switch
+      e.preventDefault();
+      stack.classList.toggle('active');
+    }, { passive: false });
+  });
+})();
