@@ -5755,3 +5755,82 @@ body { overflow-x: clip; }
     white-space: normal;
   }
 }
+
+/* ===== Phone menu: simple, professional list (option 1) ===== */
+@media (max-width: 768px) {
+  #header .nav-links {
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 0 40px;
+    overflow-y: auto;
+  }
+
+  #header .nav-links > li {
+    border-bottom: 1px solid #e6ebee;
+  }
+  #header .nav-links > li > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    color: #1e2a33;
+  }
+  #header .nav-links > li > a::after {
+    content: "›";
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    color: #11594c;
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: none;
+  }
+  #header .nav-links > li > a.active {
+    color: #11594c;
+    box-shadow: inset 3px 0 0 #11594c;
+  }
+
+  #header .nav-links .nav-dropdown > a::after {
+    content: none;
+  }
+  #header .nav-links .nav-dropdown .nav-caret {
+    display: inline-block;
+    margin-left: auto;
+    color: #11594c;
+    font-size: 12px;
+  }
+
+  #header .nav-links .nav-submenu {
+    padding: 0 0 8px;
+  }
+  #header .nav-links .nav-submenu a,
+  #header .nav-links .nav-submenu li:first-child a,
+  #header .nav-links .nav-submenu li:last-child a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 12px 44px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #4a5a64;
+  }
+  #header .nav-links .nav-submenu a::after {
+    display: block;
+    content: "→";
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    color: #11594c;
+    opacity: 1;
+    transform: none;
+  }
+}
